@@ -1,0 +1,334 @@
+.scoreboard-controller {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    padding: 20px;
+    color: white;
+}
+
+.controller-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.controller-header h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.overlay-toggle {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.overlay-toggle.active {
+    background-color: #27ae60;
+    color: white;
+}
+
+.overlay-toggle.inactive {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.overlay-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.controller-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.team-controls, .center-controls {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.team-controls h2, .center-controls h2 {
+    margin-bottom: 20px;
+    color: #FFD700;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+}
+
+.form-group input[type="color"] {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.score-section {
+    text-align: center;
+}
+
+.score-section label {
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: block;
+    color: #FFD700;
+}
+
+.score-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.score-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #3498db;
+    color: white;
+}
+
+.score-buttons button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.timer-section {
+    text-align: center;
+}
+
+.timer-section label {
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: block;
+    color: #FFD700;
+}
+
+.timer-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.timer-controls button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #e67e22;
+    color: white;
+}
+
+.timer-controls button:hover:not(:disabled) {
+    background: #d35400;
+    transform: translateY(-2px);
+}
+
+.timer-controls button:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+.timer-section input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+}
+
+.global-controls {
+    margin-top: 20px;
+}
+
+.reset-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #e74c3c;
+    color: white;
+    transition: all 0.3s;
+}
+
+.reset-button:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.preview-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.preview-section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #FFD700;
+    font-size: 1.3rem;
+}
+
+.scoreboard-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.team-preview {
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    min-width: 120px;
+}
+
+.preview-score {
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.center-preview {
+    text-align: center;
+    color: #FFD700;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .controller-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .controller-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .controller-header h1 {
+        font-size: 2rem;
+    }
+
+    .scoreboard-preview {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .team-preview {
+        min-width: auto;
+    }
+}
+
+/* Add these styles to your existing ScoreboardController.css */
+
+.color-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sg-color-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sg-color-btn.red {
+    background-color: #ED2939;
+    color: white;
+}
+
+.sg-color-btn.white {
+    background-color: #FFFFFF;
+    color: #ED2939;
+    border: 2px solid #ED2939;
+}
+
+.sg-color-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.singapore-controls {
+    margin: 15px 0;
+}
+
+.singapore-colors-btn {
+    background: linear-gradient(45deg, #ED2939, #FFFFFF);
+    color: #ED2939;
+    border: 2px solid #ED2939;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.singapore-colors-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(237, 41, 57, 0.3);
+}
+
+/* Update preview section for white backgrounds */
+.team-preview {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}

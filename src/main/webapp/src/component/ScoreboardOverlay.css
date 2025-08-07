@@ -1,0 +1,491 @@
+/* 16:9 Aspect Ratio Container with full frame red border */
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1000;
+  border: 8px solid #ED2939; /* Red border around full frame */
+  box-sizing: border-box;
+}
+
+.overlay-container.transparent {
+  background: transparent;
+  border: 8px solid #ED2939; /* Keep border even when transparent */
+}
+
+/* SG60 Logo in top left corner */
+.sg60-logo {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  pointer-events: auto;
+  z-index: 1001;
+}
+
+.sg60-logo img {
+  width: 180px; /* Slightly smaller than ACS logo */
+  height: auto;
+  border-radius: 12px;
+  /*box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);*/
+  background: transparent;
+  padding: 6px;
+  transition: transform 0.3s ease;
+  /*border: 2px solid #ED2939;*/
+}
+
+.sg60-logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Happy National Day banner in top center */
+.national-day-banner {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  z-index: 1001;
+}
+
+.national-day-banner img {
+  height: 80px; /* Fixed height for banner */
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px;
+  border: 2px solid #ED2939;
+  animation: nationalDayGlow 3s ease-in-out infinite alternate;
+}
+
+/* ACS Logo in top right corner - increased size */
+.acs-logo {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  pointer-events: auto;
+  z-index: 1001;
+}
+
+.acs-logo img {
+  width: 200px; /* Increased from 120px */
+  height: auto;
+  border-radius: 15px;
+  /*box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);*/
+  background: transparent;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.acs-logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Scoreboard positioned at bottom */
+.scoreboard-overlay {
+  position: absolute;
+  bottom: 30px; /* Increased from 20px to account for frame border */
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+
+.scoreboard-container {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  border-radius: 15px;
+  padding: 15px 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  min-width: 500px;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+.team-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--team-color), rgba(255, 255, 255, 0.1));
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Team section animation when score changes */
+.team-section.score-changed {
+  animation: teamHighlight 0.8s ease-out;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.team-name {
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin-bottom: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.team-score {
+  font-size: 36px;
+  font-weight: 900;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+  line-height: 1;
+  transition: all 0.3s ease;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.team-sets {
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+}
+
+/* Score animation when it changes */
+.team-score.score-animate {
+  animation: scoreChange 0.8s ease-out;
+  color: #FFD700 !important;
+}
+
+/* Sets animation when it changes */
+.team-sets.sets-animate {
+  animation: setsChange 0.8s ease-out;
+  color: #FFD700 !important;
+}
+
+/* Score burst effect */
+.score-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border: 3px solid #FFD700;
+  border-radius: 50%;
+  animation: burst 0.6s ease-out;
+  pointer-events: none;
+}
+
+.center-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 30px;
+  color: white;
+  text-align: center;
+}
+
+.board-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  padding: 8px 16px;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Animations */
+@keyframes glow {
+  from {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  to {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+}
+
+@keyframes nationalDayGlow {
+  from {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(237, 41, 57, 0.3);
+  }
+  to {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(237, 41, 57, 0.6);
+  }
+}
+
+@keyframes teamHighlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes scoreChange {
+  0% {
+    transform: scale(1);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+  }
+  25% {
+    transform: scale(1.3) rotateZ(5deg);
+    text-shadow: 0 0 20px #FFD700, 3px 3px 6px rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    transform: scale(1.4) rotateZ(-3deg);
+    text-shadow: 0 0 30px #FFD700, 0 0 40px #FFF, 3px 3px 6px rgba(0, 0, 0, 0.8);
+  }
+  75% {
+    transform: scale(1.2) rotateZ(2deg);
+    text-shadow: 0 0 25px #FFD700, 3px 3px 6px rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 15px #FFD700, 3px 3px 6px rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes setsChange {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-10px);
+    text-shadow: 0 0 15px #FFD700, 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    text-shadow: 0 0 8px #FFD700, 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes burst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+/* Responsive design for 16:9 */
+@media (max-width: 1920px) {
+  .overlay-container {
+    border-width: 6px;
+  }
+
+  .scoreboard-container {
+    min-width: 480px;
+    padding: 12px 20px;
+  }
+
+  .sg60-logo {
+    top: 25px;
+    left: 25px;
+  }
+
+  .sg60-logo img {
+    width: 160px;
+  }
+
+  .national-day-banner {
+    top: 18px;
+  }
+
+  .national-day-banner img {
+    height: 70px;
+  }
+
+  .acs-logo {
+    top: 25px;
+    right: 25px;
+  }
+
+  .acs-logo img {
+    width: 300px;
+  }
+
+  .scoreboard-overlay {
+    bottom: 25px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .overlay-container {
+    border-width: 5px;
+  }
+
+  .scoreboard-container {
+    min-width: 420px;
+    padding: 10px 15px;
+  }
+
+  .team-section {
+    min-width: 120px;
+    padding: 12px 15px;
+  }
+
+  .team-name {
+    font-size: 14px;
+  }
+
+  .team-score {
+    font-size: 28px;
+  }
+
+  .team-sets {
+    font-size: 12px;
+  }
+
+  .board-number {
+    font-size: 18px;
+  }
+
+  .center-section {
+    margin: 0 20px;
+  }
+
+  .sg60-logo {
+    top: 20px;
+    left: 20px;
+  }
+
+  .sg60-logo img {
+    width: 140px;
+  }
+
+  .national-day-banner {
+    top: 15px;
+  }
+
+  .national-day-banner img {
+    height: 60px;
+  }
+
+  .acs-logo {
+    top: 20px;
+    right: 20px;
+  }
+
+  .acs-logo img {
+    width: 150px;
+  }
+
+  .scoreboard-overlay {
+    bottom: 20px;
+  }
+
+  .score-burst {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay-container {
+    border-width: 4px;
+  }
+
+  .scoreboard-container {
+    min-width: 380px;
+    padding: 8px 12px;
+  }
+
+  .team-section {
+    min-width: 100px;
+    padding: 10px 12px;
+  }
+
+  .team-name {
+    font-size: 12px;
+  }
+
+  .team-score {
+    font-size: 24px;
+  }
+
+  .team-sets {
+    font-size: 10px;
+  }
+
+  .board-number {
+    font-size: 16px;
+  }
+
+  .center-section {
+    margin: 0 15px;
+  }
+
+  .sg60-logo {
+    top: 15px;
+    left: 15px;
+  }
+
+  .sg60-logo img {
+    width: 100px;
+    padding: 4px;
+  }
+
+  .national-day-banner {
+    top: 12px;
+  }
+
+  .national-day-banner img {
+    height: 45px;
+    padding: 3px;
+  }
+
+  .acs-logo {
+    top: 15px;
+    right: 15px;
+  }
+
+  .acs-logo img {
+    width: 120px;
+    padding: 6px;
+  }
+
+  .scoreboard-overlay {
+    bottom: 15px;
+  }
+
+  .score-burst {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Ensure proper 16:9 aspect ratio */
+@media (aspect-ratio: 16/9) {
+  .overlay-container {
+    width: 100vw;
+    height: 56.25vw;
+    max-height: 100vh;
+  }
+}
+
+/* Special styling for when images are not available */
+.sg60-logo img[src=""], .sg60-logo img:not([src]),
+.national-day-banner img[src=""], .national-day-banner img:not([src]),
+.acs-logo img[src=""], .acs-logo img:not([src]) {
+  display: none;
+}
